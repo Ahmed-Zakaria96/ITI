@@ -1,0 +1,68 @@
+# depslib dependency file v1.0
+1637992978 source:c:\users\geoah\desktop\lab10\main.cpp
+	<iostream>
+	<limits>
+	"colors.h"
+	"classes.h"
+
+1637946443 c:\users\geoah\desktop\lab10\colors.h
+	<windows.h>
+
+1637914314 source:c:\users\geoah\desktop\lab10\src\circle.cpp
+	"Circle.h"
+
+1637915344 c:\users\geoah\desktop\lab10\include\circle.h
+	"Shape.h"
+
+1637915234 c:\users\geoah\desktop\lab10\include\shape.h
+
+1637914283 source:c:\users\geoah\desktop\lab10\src\shape.cpp
+	"Shape.h"
+
+1637901914 source:c:\users\geoah\desktop\lab10\src\rect.cpp
+	"Rect.h"
+
+1637902151 c:\users\geoah\desktop\lab10\include\rect.h
+	<Shape.h>
+
+1637992848 source:c:\users\geoah\desktop\lab10\src\triangle.cpp
+	"Triangle.h"
+
+1637902381 c:\users\geoah\desktop\lab10\include\triangle.h
+	<Shape.h>
+
+1637902736 source:c:\users\geoah\desktop\lab10\src\square.cpp
+	"Square.h"
+
+1637902706 c:\users\geoah\desktop\lab10\include\square.h
+	<Rect.h>
+
+1637910784 c:\users\geoah\desktop\lab10\classes.h
+	"Shape.h"
+	"Circle.h"
+	"Rect.h"
+	"Square.h"
+	"Triangle.h"
+	"AreaCalculator.h"
+
+1637943134 source:c:\users\geoah\desktop\lab10\src\areacalculator.cpp
+	"AreaCalculator.h"
+	<cstddef>
+
+1637943094 c:\users\geoah\desktop\lab10\include\areacalculator.h
+	<iostream>
+	"shape.h"
+
+1637914345 source:c:\users\geoah\desktop\lab10\include\circle.h
+	<Shape.h>
+
+1637915203 source:c:\users\geoah\desktop\lab10\src\sad.cpp
+	"sad.h"
+
+1637915203 c:\users\geoah\desktop\lab10\include\sad.h
+
+1637899196 source:c:\users\geoah\desktop\lab10\src\test.cpp
+	"test.h"
+
+1637899196 c:\users\geoah\desktop\lab10\include\test.h
+
