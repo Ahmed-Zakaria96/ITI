@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1637748762 source:c:\users\geoah\desktop\lab07\main.cpp
+	<iostream>
+	<windows.h>
+	<cstdio>
+	<stdlib.h>
+	<conio.h>
+	<cstring>
+	<string.h>
+

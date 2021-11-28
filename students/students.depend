@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1637617023 source:c:\users\geoah\desktop\students\main.cpp
+	<iostream>
+	<limits>
+	<stdlib.h>
+
