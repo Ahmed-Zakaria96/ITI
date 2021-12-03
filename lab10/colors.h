@@ -17,19 +17,37 @@ namespace CC{
             }
 
             //color functions
-            void Message(){
+            // light white
+            void LWhite(){
+                SetConsoleTextAttribute(console_color, 7);
+            }
+            // grey
+            void Grey(){
+                SetConsoleTextAttribute(console_color, 8);
+            }
+            //blue
+            void Blue(){
                 SetConsoleTextAttribute(console_color, 9);
             }
-
-            void ErrorM(){
+            //red
+            void Red(){
                 SetConsoleTextAttribute(console_color, 12);
             }
-
-            void InputM(){
-                SetConsoleTextAttribute(console_color, 11);
+            // purple
+            void Purple(){
+                SetConsoleTextAttribute(console_color, 13);
             }
 
-            void DisplayData(){
+            //white
+            void White(){
+                SetConsoleTextAttribute(console_color, 15);
+            }
+            //light purple
+            void LPurple(){
+                SetConsoleTextAttribute(console_color, 5);
+            }
+            //green
+            void Green(){
                 SetConsoleTextAttribute(console_color, 10);
             }
 

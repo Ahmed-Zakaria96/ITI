@@ -14,111 +14,123 @@ Shape* switchSelection(int s, int& counter);
 int main()
 {
     ConsoleColor C;
-    cout<<"Welcome to Shapes Area Calculator Program. \n \n"<<endl;
+    cout<<"\n\nWelcome to Shapes Area Calculator Program. \n\n"<<endl;
 
+    // number of shapes and user menu selection of shape
     int number, selection;
     int counter = 0;
-    C.InputM();
 
-
-    cout<<"How many shapes do you have?"<<endl;
-    cin>>number;
-    cout<<endl;
-
-    C.Message();
+    C.White();
+    // display shapes menu
     displayShapes();
     cout<<endl;
 
-    /*
+    C.Blue();
+    // get shapes groups number
+    int groupsNumber;
+    cout<<"Enter Number of groups: ";
+    cin>>groupsNumber;
+    // counter to keep track of group
+    int groupCounter = 0;
+
+    // create array of AreaCalculator of users size
+    AreaCalculator* aG;
+    aG = new AreaCalculator [groupsNumber];
+    // check for null
+    if (aG == NULL)
     {
-
-    C.InputM();
-
-    int dim1, dim2;
-    cout<<"Enter Circle Dimension: ";
-    cin>>dim1;
-    Circle c(dim1);
-    cout<<endl;
-
-    cout<<"Enter Rectangle Dimensions: "<<endl;
-    cout<<"Dimension 1: ";
-    cin>>dim1;
-    cout<<"Dimension 2: ";
-    cin>>dim2;
-    Rect r(dim1, dim2);
-    cout<<endl;
-
-    cout<<"Enter Square Dimension: ";
-    cin>>dim1;
-    Square s(dim1);
-    cout<<endl;
-
-    cout<<"Enter Triangle Dimensions: "<<endl;
-    cout<<"Dimension 1: ";
-    cin>>dim1;
-    cout<<"Dimension 2: ";
-    cin>>dim2;
-    Triangle t(dim1, dim2);
-    cout<<endl;
-
-    C.DisplayData();
-    cout<<"Area of Circle is "<<c.Area()<<endl;
-    cout<<"Area of Rectangle is "<<r.Area()<<endl;
-    cout<<"Area of Square is "<<s.Area()<<endl;
-    cout<<"Area of Triangle is "<<t.Area()<<endl;
+        return 1;
     }
-    */
-
-    C.InputM();
-
-    Shape** shapes = new Shape*[number];
-    int flag = 1;
-    while (flag == 1)
+    // create flag to for groups loop
+    int check = 1;
+    while (check == 1)
     {
-        if (counter < number )
+        // check number of groups created
+        if (groupCounter < groupsNumber)
         {
-            cout<<"Select type of shape NO."<<counter +1<<": ";
-            cin>>selection;
-            if ( cin.fail() )
+            C.Purple();
+            cout<<"Group "<<groupCounter+1<<": "<<endl;
+            C.LWhite();
+            // ask your for each group number of shapes
+            cout<<"How many shapes do you have?"<<endl;
+            cin>>number;
+
+            // create an array of pointer to shapes of user shape count
+            Shape** shapes = new Shape*[number];
+
+            // fill the array with shapes
+            int flag = 1;
+            while (flag == 1)
             {
-                cout << "\n\tError -- Please choose only from available options [1 - 4]!\n";
-                 // get rid of failure state
-                cin.clear();
-                 // discard 'bad' character(s)
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                system("pause");
-                continue;
-            } else {
-                shapes[counter] = switchSelection(selection, counter);
+                // if entered shapes count < user number of shapes
+                if (counter < number )
+                {
+                    C.LPurple();
+                    // ask user to select type of shape from menu
+                    cout<<"Select type of shape NO."<<counter +1<<": ";
+                    cin>>selection;
+                    // if user is not friendly
+                    if ( cin.fail() )
+                    {
+                        C.Red();
+                        cout << "\n\tError -- Please choose only from available options [1 - 4]!\n";
+                         // get rid of failure state
+                        cin.clear();
+                         // discard 'bad' character(s)
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        system("pause");
+                        continue;
+                    } else {
+                        // if user is nice switch his selection to shapes and store it in shapes array
+                        // keep track of shapes and increase counter inside switchselect
+                        C.Grey();
+                        shapes[counter] = switchSelection(selection, counter);
+                    }
+                } else {
+                    // exit loop
+                    counter = 0;
+                    flag = 0;
+                }
+
             }
+            // after taking shapes info add them to AreaCalculator array aG
+            aG[groupCounter].setShapes(shapes);
+            aG[groupCounter].setNumber(number);
+            // increase group counter
+            groupCounter +=1;
+            cout<<endl;
         } else {
-            flag = 0;
+            //groups count is filled exit loop
+            check = 0;
         }
 
     }
-    C.DisplayData();
-    AreaCalculator ac(number, shapes);
-    cout<<endl;
-    cout<<"Total Area of shapes is "<<ac.TotalArea(number)<<endl;
 
-    for (int i = 0; i < number; i++)
+
+    for (int i = 0; i < groupsNumber; i++)
     {
-        delete(shapes[i]);
+        C.Purple();
+        cout<<"Group "<<i+1<<":"<<endl;
+        C.LPurple();
+        cout<<"Number of shapes: "<<aG[i].getNumber()<<endl;
+        C.Green();
+        cout<<"Total Area is: "<<aG[i].TotalArea()<<endl;
+        cout<<endl;
     }
-    C.InputM();
+    // free memory
+    delete[](aG);
+
+    C.White();
     return 0;
 }
 
 void displayShapes()
 {
-    cout<<"Available shapes: "<<endl;
-    cout<<"\t1-Circle"<<endl;
-    cout<<"\t2-Rectangle"<<endl;
-    cout<<"\t3-Square"<<endl;
-    cout<<"\t4-Triangle"<<endl;
+    cout<<"Available shapes:"<<endl;
+    cout<<"\t1-Circle \t2-Rectangle \t3-Square \t4-Triangle"<<endl;
 }
 
-
+// switch user selection of shape and create appropriate shape
 Shape* switchSelection(int s, int& sc)
 {
     int dim1, dim2;
@@ -126,7 +138,7 @@ Shape* switchSelection(int s, int& sc)
     {
     case 1:
         Circle* c;
-        cout<<"Enter circle radius: ";
+        cout<<"Enter Circle radius: ";
         cin>>dim1;
         c = new Circle(dim1);
         if ( c != NULL){
@@ -135,18 +147,19 @@ Shape* switchSelection(int s, int& sc)
         return c;
     case 2:
         Rect* r;
-        cout<<"Enter rectangle dimension1: ";
+        cout<<"Enter Rectangle dimension1: ";
         cin>>dim1;
-        cout<<"Enter rectangle dimension2: ";
+        cout<<"Enter Rectangle dimension2: ";
         cin>>dim2;
         r = new Rect(dim1, dim2);
         if ( r != NULL){
             sc +=1;
         }
+
         return r;
     case 3:
         Square* s;
-        cout<<"Enter square dimension: ";
+        cout<<"Enter Square dimension: ";
         cin>>dim1;
         s = new Square(dim1);
         if ( s != NULL){
@@ -155,9 +168,9 @@ Shape* switchSelection(int s, int& sc)
         return s;
     case 4:
         Triangle* t;
-        cout<<"Enter triangle dimension1: ";
+        cout<<"Enter Triangle dimension1: ";
         cin>>dim1;
-        cout<<"Enter triangle dimension2: ";
+        cout<<"Enter Triangle dimension2: ";
         cin>>dim2;
         t = new Triangle(dim1, dim2);
         if ( t != NULL){
